@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: The consistent pattern of `jump greater than` from the disassembly output (`objdump --disassemble <binary_file>`).
+
+sort2 uses: merge sort
+
+How do you know?: Looking at the disassembly output (`objdump --disassemble <binary_file>`), there is a reference of a merge sort function.
+
+sort3 uses: selection sort
+
+How do you know?: The jump pattern from the disassembly output (`objdump --disassemble <binary_file>`) reassemble the selection sort routine.
