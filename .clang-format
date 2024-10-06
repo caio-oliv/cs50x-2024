@@ -1,0 +1,117 @@
+---
+BasedOnStyle:  Chromium
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments:
+  Enabled:         false
+AlignConsecutiveBitFields:
+  Enabled:         false
+AlignConsecutiveDeclarations:
+  Enabled:         false
+AlignConsecutiveMacros:
+  Enabled:         false
+AlignConsecutiveShortCaseStatements:
+  Enabled:         false
+AlignEscapedNewlines: DontAlign
+AlignOperands: DontAlign
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 0
+AllowAllArgumentsOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: true
+
+AlwaysBreakBeforeMultilineStrings: false
+BinPackArguments: true
+BinPackParameters: true
+BitFieldColonSpacing: After
+BraceWrapping:
+  AfterCaseLabel:  false
+  AfterClass:      false
+  AfterControlStatement: Never
+  AfterEnum:       false
+  AfterExternBlock: false
+  AfterFunction:   false
+  AfterNamespace:  false
+  AfterObjCDeclaration: false
+  AfterStruct:     false
+  AfterUnion:      false
+  BeforeCatch:     false
+  BeforeElse:      false
+  BeforeLambdaBody: false
+  BeforeWhile:     false
+  IndentBraces:    false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+BreakAdjacentStringLiterals: true
+BreakAfterAttributes: Leave
+BreakArrays: false
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterComma
+BreakStringLiterals: true
+
+DisableFormat: false
+Standard: Latest
+ColumnLimit: 80
+IndentWidth: 2
+TabWidth: 2
+UseTab: ForContinuationAndIndentation
+ContinuationIndentWidth: 2
+PointerAlignment: Left
+DerivePointerAlignment: true
+ReferenceAlignment: Pointer
+QualifierAlignment: Left
+
+EmptyLineAfterAccessModifier: Never
+EmptyLineBeforeAccessModifier: LogicalBlock
+IndentAccessModifiers: false
+
+CompactNamespaces: false
+FixNamespaceComments: true
+IncludeBlocks: Preserve
+
+IndentCaseLabels: true
+IndentCaseBlocks: true
+IndentExternBlock: Indent
+IndentGotoLabels: false
+IndentPPDirectives: BeforeHash
+
+InsertBraces: true
+InsertNewlineAtEOF: true
+InsertTrailingCommas: None
+IntegerLiteralSeparator:
+  Binary:          0
+  BinaryMinDigits: 0
+  Decimal:         0
+  DecimalMinDigits: 0
+  Hex:             0
+  HexMinDigits:    0
+LineEnding:      DeriveLF
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: All
+
+RemoveParentheses: MultipleParentheses
+SortIncludes: Never
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCtorInitializerColon: false
+SpaceBeforeInheritanceColon: true
+SpaceBeforeJsonColon: false
+SpaceInEmptyBlock: false
+SpacesInContainerLiterals: false
+SpaceBeforeParens: ControlStatements
+SpacesInAngles: Never
+SpacesInParens:  Never
+SpacesBeforeTrailingComments: 1
+...
+
