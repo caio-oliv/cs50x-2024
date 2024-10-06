@@ -8,7 +8,7 @@
 void get_str_input(string out_str, size_t size) {
 	do {
 		*out_str = '\0';
-		char *result = fgets(out_str, size, stdin);
+		char* result = fgets(out_str, size, stdin);
 
 		if (result == NULL) {
 			while (fgetc(stdin) != '\n');
@@ -38,14 +38,14 @@ bool empty_str(const string str) {
 	return *str == '\0';
 }
 
-void *box(size_t size) {
-	void *ptr = malloc(size);
+void* box(size_t size) {
+	void* ptr = malloc(size);
 	if (!ptr) {
 		exit(EXIT_ERROR_MEM);
 	}
 	return ptr;
 }
 
-void init_zero(void *ptr, size_t size) {
+void init_zero(void* ptr, size_t size) {
 	memset(ptr, 0, size);
 }

@@ -10,26 +10,26 @@
 #define EXIT_ERROR_INVALID_USAGE 1
 
 // Type definitions
-typedef char *string;
+typedef char* string;
 
 // Function prototypes
 int get_int_input(void);
 void get_str_input(string out_str, size_t num);
 bool empty_str(const string str);
 
-void *box(size_t size);
-void init_zero(void *ptr, size_t size);
+void* box(size_t size);
+void init_zero(void* ptr, size_t size);
 
 /// array header
 void array_push(
-	void *arr,
-	size_t *count,
-	const void *item,
+	void* arr,
+	size_t* count,
+	const void* item,
 	const size_t item_size
 );
-void *array_pop(void *arr, size_t *count);
+void* array_pop(void* arr, size_t* count);
 
-void *array_last(const void *arr, const size_t count);
+void* array_last(const void* arr, const size_t count);
 
 #define MAX_CANDIDATES 9
 #define PAIR_CAPACITY (MAX_CANDIDATES * (MAX_CANDIDATES - 1) / 2)
@@ -71,7 +71,7 @@ bool real_vote(
 	const string name,
 	const string candts[],
 	uint8_t candidate_cnt,
-	int *out_vote
+	int* out_vote
 );
 void real_record_preferences(
 	int pref[MAX_CANDIDATES][MAX_CANDIDATES],
@@ -89,8 +89,8 @@ int fill_pairs(
 	const uint8_t candidate_cnt
 );
 void real_sort_pairs(pair_t pair_arr[PAIR_CAPACITY], const int pair_cnt);
-int32_t cmp_pair(const pair_t *pair_a, const pair_t *pair_b);
-void print_pair(const pair_t pair, FILE *stream);
+int32_t cmp_pair(const pair_t* pair_a, const pair_t* pair_b);
+void print_pair(const pair_t pair, FILE* stream);
 void graph_pairs(
 	bool winning_graph[MAX_CANDIDATES][MAX_CANDIDATES],
 	const pair_t pair_arr[PAIR_CAPACITY],
@@ -223,14 +223,14 @@ uint8_t validade_args(
 void init_winning_graph(bool winning_graph[MAX_CANDIDATES][MAX_CANDIDATES]) {
 	// Clear graph of locked in pairs
 	for (int i = 0; i < MAX_CANDIDATES; i++) {
-		init_zero((bool *)winning_graph[i], MAX_CANDIDATES);
+		init_zero((bool*)winning_graph[i], MAX_CANDIDATES);
 	}
 }
 
 void init_preferences_graph(int pref[MAX_CANDIDATES][MAX_CANDIDATES]) {
 	// Clear graph of locked in pairs
 	for (int i = 0; i < MAX_CANDIDATES; i++) {
-		init_zero((int *)pref[i], MAX_CANDIDATES);
+		init_zero((int*)pref[i], MAX_CANDIDATES);
 	}
 }
 
@@ -242,7 +242,7 @@ void take_preferences(
 ) {
 	// A rank by the voter preference
 	// Stores the candidate index
-	int *ranks = (int *)box(candidate_cnt * sizeof(int));
+	int* ranks = (int*)box(candidate_cnt * sizeof(int));
 	string name = make_candidate_name();
 
 	// Query for votes
@@ -271,7 +271,7 @@ bool real_vote(
 	const string name,
 	const string candts[],
 	const uint8_t candidate_cnt,
-	int *out_vote
+	int* out_vote
 ) {
 	for (uint8_t idx = 0; idx < candidate_cnt; idx++) {
 		if (strcmp(candts[idx], name) == 0) {
@@ -339,8 +339,8 @@ int get_pair_strength(const pair_t pair) {
 	return preferences[pair.winner][pair.loser];
 }
 
-static int32_t cmp_pair_blank_des(const void *pair_a, const void *pair_b) {
-	return cmp_pair((pair_t *)pair_b, (pair_t *)pair_a);
+static int32_t cmp_pair_blank_des(const void* pair_a, const void* pair_b) {
+	return cmp_pair((pair_t*)pair_b, (pair_t*)pair_a);
 }
 
 // Sort pairs in decreasing order by the winner strength
@@ -348,12 +348,12 @@ void real_sort_pairs(pair_t pair_arr[PAIR_CAPACITY], const int pair_cnt) {
 	qsort(pair_arr, pair_cnt, sizeof(pair_t), cmp_pair_blank_des);
 }
 
-int32_t cmp_pair(const pair_t *pair_a, const pair_t *pair_b) {
+int32_t cmp_pair(const pair_t* pair_a, const pair_t* pair_b) {
 	return (int32_t)get_pair_strength(*pair_a) -
 		(int32_t)get_pair_strength(*pair_b);
 }
 
-void print_pair(const pair_t pair, FILE *stream) {
+void print_pair(const pair_t pair, FILE* stream) {
 	fprintf(
 		stream,
 		"pair {.winner = %i, .loser = %i, .winner_strength = %i}",
@@ -385,12 +385,12 @@ bool winning_graph_has_cycle(
 	const uint8_t candidate_cnt
 ) {
 	const size_t size = sizeof(bool) * candidate_cnt;
-	bool *visited = box(size);
+	bool* visited = box(size);
 	init_zero(visited, size);
-	bool *on_stack = box(size);
+	bool* on_stack = box(size);
 	init_zero(on_stack, size);
 
-	uint8_t *stack = box(sizeof(uint8_t) * MAX_CANDIDATES);
+	uint8_t* stack = box(sizeof(uint8_t) * MAX_CANDIDATES);
 	size_t stack_count = 0;
 
 	for (uint8_t w = 0; w < candidate_cnt; w++) {
@@ -401,7 +401,7 @@ bool winning_graph_has_cycle(
 		array_push(stack, &stack_count, &w, sizeof(uint8_t));
 
 		while (stack_count != 0) {
-			uint8_t top = *(uint8_t *)array_last(stack, stack_count);
+			uint8_t top = *(uint8_t*)array_last(stack, stack_count);
 
 			if (!visited[top]) {
 				visited[top] = true;
@@ -494,7 +494,7 @@ uint32_t read_voter_count(const string prompt) {
 void get_str_input(string out_str, size_t size) {
 	do {
 		*out_str = '\0';
-		char *result = fgets(out_str, size, stdin);
+		char* result = fgets(out_str, size, stdin);
 
 		if (result == NULL) {
 			while (fgetc(stdin) != '\n');
@@ -524,35 +524,35 @@ bool empty_str(const string str) {
 	return *str == '\0';
 }
 
-void *box(size_t size) {
-	void *ptr = malloc(size);
+void* box(size_t size) {
+	void* ptr = malloc(size);
 	if (!ptr) {
 		exit(EXIT_ERROR_MEM);
 	}
 	return ptr;
 }
 
-void init_zero(void *ptr, size_t size) {
+void init_zero(void* ptr, size_t size) {
 	memset(ptr, 0, size);
 }
 
 /// array body
 void array_push(
-	void *arr,
-	size_t *count,
-	const void *item,
+	void* arr,
+	size_t* count,
+	const void* item,
 	const size_t item_size
 ) {
 	memcpy(arr + *count, item, item_size);
 	*count += 1;
 }
 
-void *array_pop(void *arr, size_t *count) {
-	void *last = array_last(arr, *count);
+void* array_pop(void* arr, size_t* count) {
+	void* last = array_last(arr, *count);
 	*count -= 1;
 	return last;
 }
 
-void *array_last(const void *arr, const size_t count) {
-	return (void *)(arr + count - 1);
+void* array_last(const void* arr, const size_t count) {
+	return (void*)(arr + count - 1);
 }

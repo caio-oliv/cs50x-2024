@@ -65,7 +65,7 @@ TabWidth: 2
 UseTab: ForContinuationAndIndentation
 ContinuationIndentWidth: 2
 PointerAlignment: Left
-DerivePointerAlignment: true
+DerivePointerAlignment: false
 ReferenceAlignment: Pointer
 QualifierAlignment: Left
 

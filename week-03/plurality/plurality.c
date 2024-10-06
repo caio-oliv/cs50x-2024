@@ -13,11 +13,11 @@
 #define EXIT_ERROR_MEM -1
 #define EXIT_ERROR_FILE_STREAM -2
 
-typedef char *string;
+typedef char* string;
 
 // Candidates have name and vote count
 typedef struct {
-	char *name;
+	char* name;
 	int votes;
 } candidate;
 
@@ -32,14 +32,14 @@ void get_str_input(string str, size_t num);
 bool empty_str(const string str);
 
 // Function prototypes
-void fprint_candidates(FILE *restrict stream);
+void fprint_candidates(FILE* restrict stream);
 void get_all_votes(size_t voter_count);
 int get_voter_count(const string prompt);
 void get_vote(const string prompt, string name);
 bool vote(const string name);
 void print_winner(void);
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	// Check for invalid usage
 	if (argc < 2) {
 		printf("Usage: plurality [candidate ...]\n");
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 	print_winner();
 }
 
-void fprint_candidates(FILE *restrict stream) {
+void fprint_candidates(FILE* restrict stream) {
 	for (int i = 0; i < candidate_count; i++) {
 		fprintf(
 			stream,
@@ -144,7 +144,7 @@ int get_voter_count(const string prompt) {
 void get_str_input(string str, size_t size) {
 	do {
 		*str = '\0';
-		char *result = fgets(str, size, stdin);
+		char* result = fgets(str, size, stdin);
 
 		if (result == NULL) {
 			while (fgetc(stdin) != '\n');

@@ -52,7 +52,7 @@ bool vote(
 	const string name,
 	const string candidates[],
 	uint8_t candidate_count,
-	uint8_t *out_vote
+	uint8_t* out_vote
 );
 void record_preferences(
 	uint32_t preferences[MAX_CANDIDATES][MAX_CANDIDATES],
@@ -75,8 +75,8 @@ uint8_t fill_pairs(
 	const uint8_t candidate_count
 );
 void sort_pairs(pair_t pairs[PAIR_CAPACITY], const uint8_t pair_count);
-int32_t cmp_pair(const pair_t *pair_a, const pair_t *pair_b);
-void print_pair(const pair_t pair, FILE *stream);
+int32_t cmp_pair(const pair_t* pair_a, const pair_t* pair_b);
+void print_pair(const pair_t pair, FILE* stream);
 void graph_pairs(
 	bool winning_graph[MAX_CANDIDATES][MAX_CANDIDATES],
 	const pair_t pairs[PAIR_CAPACITY],
@@ -162,7 +162,7 @@ uint8_t validade_args(
 void init_winning_graph(bool locked[MAX_CANDIDATES][MAX_CANDIDATES]) {
 	// Clear graph of locked in pairs
 	for (int i = 0; i < MAX_CANDIDATES; i++) {
-		init_zero((bool *)locked[i], MAX_CANDIDATES);
+		init_zero((bool*)locked[i], MAX_CANDIDATES);
 	}
 }
 
@@ -170,7 +170,7 @@ void init_preferences_graph(uint32_t preferences[MAX_CANDIDATES][MAX_CANDIDATES]
 ) {
 	// Clear graph of locked in pairs
 	for (int i = 0; i < MAX_CANDIDATES; i++) {
-		init_zero((uint32_t *)preferences[i], MAX_CANDIDATES);
+		init_zero((uint32_t*)preferences[i], MAX_CANDIDATES);
 	}
 }
 
@@ -182,7 +182,7 @@ void take_preferences(
 ) {
 	// A rank by the voter preference
 	// Stores the candidate index
-	uint8_t *ranks = (uint8_t *)box(candidate_count * sizeof(uint8_t));
+	uint8_t* ranks = (uint8_t*)box(candidate_count * sizeof(uint8_t));
 	string name = make_candidate_name();
 
 	// Query for votes
@@ -211,7 +211,7 @@ bool vote(
 	const string name,
 	const string candidates[],
 	const uint8_t candidate_count,
-	uint8_t *out_vote
+	uint8_t* out_vote
 ) {
 	for (uint8_t idx = 0; idx < candidate_count; idx++) {
 		if (strcmp(candidates[idx], name) == 0) {
@@ -278,8 +278,8 @@ uint8_t fill_pairs(
 	return count;
 }
 
-static int32_t cmp_pair_blank_des(const void *pair_a, const void *pair_b) {
-	return cmp_pair((pair_t *)pair_b, (pair_t *)pair_a);
+static int32_t cmp_pair_blank_des(const void* pair_a, const void* pair_b) {
+	return cmp_pair((pair_t*)pair_b, (pair_t*)pair_a);
 }
 
 // Sort pairs in decreasing order by the winner strength
@@ -287,11 +287,11 @@ void sort_pairs(pair_t pairs[PAIR_CAPACITY], const uint8_t pair_count) {
 	qsort(pairs, pair_count, sizeof(pair_t), cmp_pair_blank_des);
 }
 
-int32_t cmp_pair(const pair_t *pair_a, const pair_t *pair_b) {
+int32_t cmp_pair(const pair_t* pair_a, const pair_t* pair_b) {
 	return (int32_t)pair_a->winner_strength - (int32_t)pair_b->winner_strength;
 }
 
-void print_pair(const pair_t pair, FILE *stream) {
+void print_pair(const pair_t pair, FILE* stream) {
 	fprintf(
 		stream,
 		"pair {.winner = %hhu, .loser = %hhu, .winner_strength = %u}",
@@ -323,12 +323,12 @@ bool winning_graph_has_cycle(
 	const uint8_t candidate_count
 ) {
 	const size_t size = sizeof(bool) * candidate_count;
-	bool *visited = box(size);
+	bool* visited = box(size);
 	init_zero(visited, size);
-	bool *on_stack = box(size);
+	bool* on_stack = box(size);
 	init_zero(on_stack, size);
 
-	uint8_t *stack = box(sizeof(uint8_t) * MAX_CANDIDATES);
+	uint8_t* stack = box(sizeof(uint8_t) * MAX_CANDIDATES);
 	size_t stack_count = 0;
 
 	for (uint8_t w = 0; w < candidate_count; w++) {
@@ -339,7 +339,7 @@ bool winning_graph_has_cycle(
 		array_push(stack, &stack_count, &w, sizeof(uint8_t));
 
 		while (stack_count != 0) {
-			uint8_t top = *(uint8_t *)array_last(stack, stack_count);
+			uint8_t top = *(uint8_t*)array_last(stack, stack_count);
 
 			if (!visited[top]) {
 				visited[top] = true;
