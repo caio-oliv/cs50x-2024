@@ -18,7 +18,7 @@ AlignTrailingComments:
   Kind: Always
   OverEmptyLines: 0
 AllowAllArgumentsOnNextLine: true
-AllowAllParametersOfDeclarationOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: false
 AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortEnumsOnASingleLine: true
@@ -27,8 +27,8 @@ AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: true
 
 AlwaysBreakBeforeMultilineStrings: false
-BinPackArguments: true
-BinPackParameters: true
+BinPackArguments: false
+BinPackParameters: false
 BitFieldColonSpacing: After
 BraceWrapping:
   AfterCaseLabel:  false
