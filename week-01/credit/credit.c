@@ -4,20 +4,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../../lib/common.h"
+
 #define INPUT_SIZE 1024
 
 #define AMERICAN_EXPRESS "AMEX"
 #define MASTER_CARD "MASTERCARD"
 #define VISA "VISA"
 
-char* get_str_input(char* str, size_t num);
 uint64_t parse_uint64_t(const char* str, const size_t len, uint8_t* err);
 
-uint64_t get_card_number();
+uint64_t get_card_number(void);
 bool is_card_number_legit(uint64_t num);
 const char* get_card_flag(const uint64_t number);
 
-int main() {
+int main(void) {
 	uint64_t number = get_card_number();
 
 	if (!is_card_number_legit(number)) {
@@ -76,7 +77,7 @@ bool is_card_number_legit(uint64_t num) {
 	return (sum % 10) == 0;
 }
 
-uint64_t get_card_number() {
+uint64_t get_card_number(void) {
 	uint64_t number = 0;
 	char* str = malloc(INPUT_SIZE);
 	if (str == NULL) {
@@ -85,8 +86,8 @@ uint64_t get_card_number() {
 
 	do {
 		printf("Number: ");
-		char* input_result = get_str_input(str, INPUT_SIZE);
-		if (input_result == NULL) {
+		get_str_input(str, INPUT_SIZE);
+		if (empty_str(str)) {
 			continue;
 		}
 
@@ -121,14 +122,4 @@ uint64_t parse_uint64_t(const char* str, const size_t len, uint8_t* err) {
 
 	*err = 0;
 	return num;
-}
-
-char* get_str_input(char* str, size_t num) {
-	char* result = (char*)fgets(str, num, stdin);
-
-	if (result == NULL) {
-		while (fgetc(stdin) != '\n');
-	}
-
-	return result;
 }

@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include <stdio.h>
 
 #define PYRAMID_HEIGHT_MIN 1
@@ -7,27 +6,15 @@
 #define PYRAMID_BLOCK '#'
 #define AIR_BLOCK ' '
 
+#include "../../lib/common.h"
+
 void write_pyramid(int height);
 void write_pyramid_gap();
 int get_pyramid_height(int min, int max);
-int get_int_input();
 
 int main() {
 	int height = get_pyramid_height(PYRAMID_HEIGHT_MIN, PYRAMID_HEIGHT_MAX);
 	write_pyramid(height);
-}
-
-int get_int_input() {
-	int value;
-	int result = scanf("%d", &value);
-
-	if (result == EOF) {
-		exit(1);
-	} else if (result == 0) {
-		while (fgetc(stdin) != '\n');
-	}
-
-	return value;
 }
 
 int get_pyramid_height(int min, int max) {
