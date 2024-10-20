@@ -5,7 +5,7 @@
 #include <math.h>
 #include <string.h>
 
-#include "../../lib/common.h"
+#include "common.h"
 
 /// ### Macros:
 
@@ -40,8 +40,8 @@ args_t validate_args(const int32_t argc, const string argv[]);
 float parse_factor(const string restrict factor_str);
 FILE* safe_fopen(const string restrict filename, const string restrict modes);
 
-void terminate_wav_read();
-void terminate_wav_write();
+void terminate_wav_read(void);
+void terminate_wav_write(void);
 
 bool read_wav_header(uint8_t* restrict wav_header, FILE* restrict stream);
 bool write_wav_header(uint8_t* restrict wav_header, FILE* restrict stream);
@@ -111,7 +111,7 @@ args_t validate_args(const int32_t argc, const string argv[]) {
 	return (args_t){.input = argv[1], .output = argv[2], .factor_str = argv[3]};
 }
 
-float parse_factor(const string factor_str) {
+float parse_factor(const string restrict factor_str) {
 	const float factor = atof(factor_str);
 
 	if (fpclassify(factor) != FP_NORMAL || factor <= 0.0f) {
@@ -133,12 +133,12 @@ FILE* safe_fopen(const string restrict filename, const string restrict modes) {
 	return file;
 }
 
-void terminate_wav_read() {
+void terminate_wav_read(void) {
 	puts("Could not read WAV file\n");
 	exit(EXIT_ERR_RW_FILE);
 }
 
-void terminate_wav_write() {
+void terminate_wav_write(void) {
 	puts("Could not write WAV file\n");
 	exit(EXIT_ERR_RW_FILE);
 }

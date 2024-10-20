@@ -6,13 +6,13 @@
 #define PYRAMID_BLOCK '#'
 #define AIR_BLOCK ' '
 
-#include "../../lib/common.h"
+#include "common.h"
 
 void write_pyramid(int height);
-void write_pyramid_gap();
+void write_pyramid_gap(void);
 int get_pyramid_height(int min, int max);
 
-int main() {
+int main(void) {
 	int height = get_pyramid_height(PYRAMID_HEIGHT_MIN, PYRAMID_HEIGHT_MAX);
 	write_pyramid(height);
 }
@@ -28,7 +28,7 @@ int get_pyramid_height(int min, int max) {
 	return height;
 }
 
-void write_pyramid_gap() {
+void write_pyramid_gap(void) {
 	for (int gap = PYRAMID_GAP; gap > 0; gap--) {
 		putchar(AIR_BLOCK);
 	}

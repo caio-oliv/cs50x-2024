@@ -4,8 +4,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "../../lib/common.h"
-#include "../../lib/array.h"
+#include "common.h"
+#include "array.h"
 
 #define MAX_CANDIDATES 9
 #define PAIR_CAPACITY (MAX_CANDIDATES * (MAX_CANDIDATES - 1) / 2)

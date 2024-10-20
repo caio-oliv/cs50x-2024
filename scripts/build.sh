@@ -5,12 +5,15 @@ set -e;
 CSOURCE_EXT='.c';
 CHEADER_EXT='.h';
 
-LIB_PATH='lib';
+LIB_PATH="$(pwd)/lib";
 
 LIB_CFILE=$(find $LIB_PATH -name "*$CSOURCE_EXT");
 LIB_HFILE=$(find $LIB_PATH -name "*$CHEADER_EXT");
 
-CLANG_FLAGS='-Wall -Werror -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wshadow -Qunused-arguments -gdwarf-4 -lm';
+CLANG_FLAGS="-Wall -Werror -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter"`
+	`" -Wno-unused-variable -Wshadow -Qunused-arguments -gdwarf-4 -lm"`
+	`" --include-directory $LIB_PATH";
+
 OUT_DIR='out';
 
 

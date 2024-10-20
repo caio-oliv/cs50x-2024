@@ -1,12 +1,11 @@
 #include <stddef.h>
 #include <stdbool.h>
 
+#include "typedef.h"
+
 #define EXIT_ERROR_MEM -1
 #define EXIT_ERROR_FILE_STREAM -2
 #define EXIT_ERROR_INVALID_USAGE 1
-
-// Type definitions
-typedef char* string;
 
 // Function prototypes
 int get_int_input(void);

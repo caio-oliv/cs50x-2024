@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../lib/common.h"
+#include "common.h"
 
 #define INPUT_SIZE 1024
 
