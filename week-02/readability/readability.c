@@ -6,10 +6,11 @@
 #include <math.h>
 #include <string.h>
 
+#include "common.h"
+
 #define TEXT_SIZE 4096
 #define WORD_SEPARATOR ' '
 
-char* get_str_input(char* str, size_t num);
 char* get_answer(const char* prompt);
 
 bool is_sentence_terminator(char ch);
@@ -83,13 +84,10 @@ uint64_t count_words(const char* text) {
 uint64_t count_sentences(const char* text) {
 	uint64_t count = 0;
 
-	bool previous_terminator = false;
 	for (int i = 0; text[i]; i++) {
 		if (is_sentence_terminator(text[i])) {
 			count += 1;
-			previous_terminator = true;
 		} else {
-			previous_terminator = false;
 		}
 	}
 
@@ -103,20 +101,8 @@ bool is_sentence_terminator(char ch) {
 char* get_answer(const char* prompt) {
 	char* answer = malloc(TEXT_SIZE);
 
-	do {
-		fputs(prompt, stdout);
-		get_str_input(answer, TEXT_SIZE);
-	} while (strlen(answer) == 0);
+	fputs(prompt, stdout);
+	get_str_input(answer, TEXT_SIZE);
 
 	return answer;
-}
-
-char* get_str_input(char* str, size_t num) {
-	char* result = (char*)fgets(str, num, stdin);
-
-	if (result == NULL) {
-		while (fgetc(stdin) != '\n');
-	}
-
-	return result;
 }

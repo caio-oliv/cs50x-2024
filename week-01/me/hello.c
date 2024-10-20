@@ -3,7 +3,7 @@
 
 #define NAME_SIZE 256
 
-int main() {
+int main(void) {
 	char* name = malloc(NAME_SIZE);
 	printf("What's your name? ");
 	scanf("%s", name);

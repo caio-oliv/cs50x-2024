@@ -10,8 +10,11 @@ LIB_PATH="$(pwd)/lib";
 LIB_CFILE=$(find $LIB_PATH -name "*$CSOURCE_EXT");
 LIB_HFILE=$(find $LIB_PATH -name "*$CHEADER_EXT");
 
-CLANG_FLAGS="-Wall -Werror -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter"`
-	`" -Wno-unused-variable -Wshadow -Qunused-arguments -gdwarf-4 -lm"`
+CLANG_WARN="-Wall -Werror -Wextra -pedantic -Wunused-parameter -Wunused-variable -Wshadow";
+CLANG_ALLOW_WARN="-Wno-sign-compare -Wno-gnu-binary-literal";
+
+CLANG_FLAGS="-std=c17 -lm $CLANG_WARN $CLANG_ALLOW_WARN"`
+	`" -Qunused-arguments"`
 	`" --include-directory $LIB_PATH";
 
 OUT_DIR='out';

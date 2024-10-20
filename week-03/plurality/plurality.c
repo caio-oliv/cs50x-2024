@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <string.h>
 
+#include "common.h"
+
 // Max number of candidates
 #define MAX 9
 
@@ -26,10 +28,6 @@ candidate candidates[MAX];
 
 // Number of candidates
 int candidate_count;
-
-int get_int_input();
-void get_str_input(string str, size_t num);
-bool empty_str(const string str);
 
 // Function prototypes
 void fprint_candidates(FILE* restrict stream);
@@ -126,12 +124,11 @@ void print_winner(void) {
 }
 
 void get_vote(const string prompt, string name) {
-	do {
-		if (prompt) {
-			fputs(prompt, stdout);
-		}
-		get_str_input(name, MAX_NAME_SIZE);
-	} while (empty_str(name));
+	if (prompt) {
+		fputs(prompt, stdout);
+	}
+
+	get_str_input(name, MAX_NAME_SIZE);
 }
 
 int get_voter_count(const string prompt) {
@@ -139,37 +136,4 @@ int get_voter_count(const string prompt) {
 		fputs(prompt, stdout);
 	}
 	return get_int_input();
-}
-
-void get_str_input(string str, size_t size) {
-	do {
-		*str = '\0';
-		char* result = fgets(str, size, stdin);
-
-		if (result == NULL) {
-			while (fgetc(stdin) != '\n');
-		}
-	} while (empty_str(str) || *str == '\n');
-
-	size_t len = strlen(str);
-	if (str[len - 1] == '\n' || str[len - 1] == '\r') {
-		str[len - 1] = '\0';
-	}
-}
-
-int get_int_input() {
-	int value = 0;
-	int result = scanf("%d", &value);
-
-	if (result == EOF) {
-		exit(EXIT_ERROR_FILE_STREAM);
-	} else if (result == 0) {
-		while (fgetc(stdin) != '\n') {};
-	}
-
-	return value;
-}
-
-bool empty_str(const string str) {
-	return *str == '\0';
 }

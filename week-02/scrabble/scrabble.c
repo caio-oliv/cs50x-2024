@@ -4,9 +4,10 @@
 #include <string.h>
 #include <stdint.h>
 
+#include "common.h"
+
 #define ANSWER_SIZE 128
 
-char* get_str_input(char* str, size_t num);
 void lowercase(char* str);
 
 char* get_player_answer(const char* prompt);
@@ -102,22 +103,10 @@ uint8_t get_letter_score(char letter) {
 char* get_player_answer(const char* prompt) {
 	char* answer = malloc(ANSWER_SIZE);
 
-	do {
-		fputs(prompt, stdout);
-		get_str_input(answer, ANSWER_SIZE);
-	} while (strlen(answer) == 0);
+	fputs(prompt, stdout);
+	get_str_input(answer, ANSWER_SIZE);
 
 	return answer;
-}
-
-char* get_str_input(char* str, size_t num) {
-	char* result = (char*)fgets(str, num, stdin);
-
-	if (result == NULL) {
-		while (fgetc(stdin) != '\n');
-	}
-
-	return result;
 }
 
 void lowercase(char* str) {

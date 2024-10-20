@@ -5,15 +5,15 @@
 #include <ctype.h>
 #include <string.h>
 
+#include "common.h"
+
 #define KEY_SIZE 26
 #define PLAINTEXT_SIZE 4096
-
-char* get_str_input(char* str, size_t num);
 
 void show_usage(const char* cmd);
 void show_ciphertext(const char* cipher);
 bool parse_key(char dest[KEY_SIZE], const char* str);
-char* get_plaintext();
+char* get_plaintext(void);
 char substitute_char(char ch, char key[KEY_SIZE]);
 void substitute(char* ciphertext, const char* plaintext, char key[KEY_SIZE]);
 
@@ -90,19 +90,11 @@ char substitute_char(char ch, char key[KEY_SIZE]) {
 	return ch;
 }
 
-char* get_plaintext() {
-	fputs("plaintext:", stdout);
+char* get_plaintext(void) {
 	char* plaintext = malloc(PLAINTEXT_SIZE);
+
+	fputs("plaintext:", stdout);
 	get_str_input(plaintext, PLAINTEXT_SIZE);
+
 	return plaintext;
-}
-
-char* get_str_input(char* str, size_t num) {
-	char* result = (char*)fgets(str, num, stdin);
-
-	if (result == NULL) {
-		while (fgetc(stdin) != '\n');
-	}
-
-	return result;
 }
