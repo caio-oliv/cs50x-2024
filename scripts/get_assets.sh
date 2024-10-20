@@ -29,59 +29,67 @@ function log_finished {
 
 function get_week03_sort {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/3/sort.zip';
-	local sort_zip_file='sort.zip';
+	local zip_file='sort.zip';
 
 	log_load_assets '03' '"Sort"';
-	download_zip_assets $file_uri $sort_zip_file;
+	download_zip_assets $file_uri $zip_file;
 }
 
 function get_week03_plurality {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/3/plurality.zip';
-	local plur_zip_file='plurality.zip';
+	local zip_file='plurality.zip';
 
 	log_load_assets '03' '"Plurality"';
-	download_zip_assets $file_uri $plur_zip_file;
+	download_zip_assets $file_uri $zip_file;
 }
 
 function get_week03_runoff {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/3/runoff.zip';
-	local runoff_zip_file='runoff.zip';
+	local zip_file='runoff.zip';
 
 	log_load_assets '03' '"Runoff"';
-	download_zip_assets $file_uri $runoff_zip_file;
+	download_zip_assets $file_uri $zip_file;
 }
 
 function get_week03_tideman {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/3/tideman.zip';
-	local tide_zip_file='tideman.zip';
+	local zip_file='tideman.zip';
 
 	log_load_assets '03' '"Tideman"';
-	download_zip_assets $file_uri $tide_zip_file;
+	download_zip_assets $file_uri $zip_file;
 }
 
 function get_week04_volume {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/4/volume.zip';
-	local vol_zip_file='volume.zip';
+	local zip_file='volume.zip';
 	local vol_wav_file='input.wav';
 
 	log_load_assets '04' '"Volume"';
-	download_zip_assets $file_uri $vol_zip_file "volume/$vol_wav_file";
+	download_zip_assets $file_uri $zip_file "volume/$vol_wav_file";
 }
 
 function get_week04_filter_less {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/4/filter-less.zip';
-	local filter_zip_file='filter-less.zip';
+	local zip_file='filter-less.zip';
 
 	log_load_assets '04' '"Filter less"';
-	download_zip_assets $file_uri $filter_zip_file;
+	download_zip_assets $file_uri $zip_file;
 }
 
 function get_week04_filter_more {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/4/filter-more.zip';
-	local filter_zip_file='filter-more.zip';
+	local zip_file='filter-more.zip';
 
 	log_load_assets '04' '"Filter more"';
-	download_zip_assets $file_uri $filter_zip_file;
+	download_zip_assets $file_uri $zip_file;
+}
+
+function get_week04_recover {
+	local file_uri='https://cdn.cs50.net/2023/fall/psets/4/recover.zip';
+	local zip_file='recover.zip';
+
+	log_load_assets '04' '"Recover"';
+	download_zip_assets $file_uri $zip_file;
 }
 
 
@@ -95,5 +103,6 @@ get_week03_tideman;
 get_week04_volume;
 get_week04_filter_less;
 get_week04_filter_more;
+get_week04_recover;
 
 log_finished;
