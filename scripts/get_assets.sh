@@ -15,7 +15,7 @@ function unzip_assets {
 function download_zip_assets {
 	rm -rf $2;
 	download $1 $2;
-	unzip_assets $2 ${3-};
+	unzip_assets $2 $3;
 	rm -rf $2;
 }
 

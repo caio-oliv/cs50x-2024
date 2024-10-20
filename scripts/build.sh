@@ -10,9 +10,21 @@ LIB_PATH='lib';
 LIB_CFILE=$(find $LIB_PATH -name "*$CSOURCE_EXT");
 LIB_HFILE=$(find $LIB_PATH -name "*$CHEADER_EXT");
 
-CLANG_FLAGS='-Wall -Wextra -pedantic';
+CLANG_FLAGS='-Wall -Werror -Wextra -pedantic -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wshadow -Qunused-arguments -gdwarf-4 -lm';
 OUT_DIR='out';
 
+
+function filter_flags {
+	local extra_flags="";
+
+	for arg in "$@"; do
+		if [[ $arg == -* ]]; then
+			extra_flags="$extra_flags $arg";
+		fi
+	done
+
+	echo -n $extra_flags;
+}
 
 ERROR_USAGE=-1;
 ERROR_PROGRAM_NOT_FOUND=-2;
@@ -60,7 +72,14 @@ case $1 in
 		;;
 	'w4')
 		week='week-04';
-		check_program $week $2 $2;
+		case $2 in
+			'filter-more')
+				check_program $week 'filter-more' 'filter';
+				;;
+			*)
+				check_program $week $2 $2;
+				;;
+		esac
 		;;
 	'w5')
 		week='week-05';
@@ -72,5 +91,14 @@ case $1 in
 		;;
 esac
 
+prog_main_file="$week/$directory/$program.c";
+prog_c_files=$(find "$week/$directory" -name "*$CSOURCE_EXT" -not -wholename $prog_main_file);
+
+extra_flags=$(filter_flags $@);
+
 mkdir -p $OUT_DIR;
-clang --stdlib=c17 $CLANG_FLAGS "$week/$directory/$program.c" $LIB_CFILE -o "$OUT_DIR/$program";
+
+clang --stdlib=c17 $CLANG_FLAGS $extra_flags \
+	$prog_main_file \
+	$LIB_CFILE $prog_c_files \
+	-o "$OUT_DIR/$program";
