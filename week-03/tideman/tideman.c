@@ -108,12 +108,12 @@ uint32_t read_voter_count(const string prompt);
 
 int main(int argc, string argv[]) {
 	// Array of candidates
-	string candidates[MAX_CANDIDATES] = {};
+	string candidates[MAX_CANDIDATES] = {""};
 	// preferences[i][j] is number of voters who prefer i over j
-	uint32_t preferences[MAX_CANDIDATES][MAX_CANDIDATES] = {};
-	pair_t pairs[PAIR_CAPACITY] = {};
+	uint32_t preferences[MAX_CANDIDATES][MAX_CANDIDATES] = {{0}};
+	pair_t pairs[PAIR_CAPACITY];
 	// locked[i][j] means i is locked in over j
-	bool winning_graph[MAX_CANDIDATES][MAX_CANDIDATES] = {};
+	bool winning_graph[MAX_CANDIDATES][MAX_CANDIDATES] = {{false}};
 
 	const uint8_t candidate_count = validade_args(argc, argv, candidates);
 
@@ -339,14 +339,14 @@ bool winning_graph_has_cycle(
 		array_push(stack, &stack_count, &w, sizeof(uint8_t));
 
 		while (stack_count != 0) {
-			uint8_t top = *(uint8_t*)array_last(stack, stack_count);
+			uint8_t top = *(uint8_t*)array_last(stack, stack_count, sizeof(uint8_t));
 
 			if (!visited[top]) {
 				visited[top] = true;
 				on_stack[top] = true;
 			} else {
 				on_stack[top] = false;
-				array_pop(stack, &stack_count);
+				array_pop(stack, &stack_count, sizeof(uint8_t));
 			}
 
 			for (uint8_t i = 0; i < candidate_count; i++) {
