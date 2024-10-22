@@ -92,6 +92,14 @@ function get_week04_recover {
 	download_zip_assets $file_uri $zip_file;
 }
 
+function get_week05_inheritance {
+	local file_uri='https://cdn.cs50.net/2023/fall/psets/5/inheritance.zip';
+	local zip_file='inheritance.zip';
+
+	log_load_assets '05' '"Inheritance"';
+	download_zip_assets $file_uri $zip_file;
+}
+
 
 mkdir --parents $ASSETS_DIR;
 
@@ -104,5 +112,7 @@ get_week04_volume;
 get_week04_filter_less;
 get_week04_filter_more;
 get_week04_recover;
+
+get_week05_inheritance;
 
 log_finished;

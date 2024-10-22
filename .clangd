@@ -1,0 +1,13 @@
+If:
+  PathMatch: .*\.c
+
+CompileFlags:
+  Compiler: clang
+  Add: [-std=c17]
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+
+Index:
+  Background: Skip
