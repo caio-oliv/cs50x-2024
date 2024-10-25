@@ -100,6 +100,14 @@ function get_week05_inheritance {
 	download_zip_assets $file_uri $zip_file;
 }
 
+function get_week05_speller {
+	local file_uri='https://cdn.cs50.net/2023/fall/psets/5/speller.zip';
+	local zip_file='speller.zip';
+
+	log_load_assets '05' '"Speller"';
+	download_zip_assets $file_uri $zip_file;
+}
+
 
 mkdir --parents $ASSETS_DIR;
 
@@ -114,5 +122,6 @@ get_week04_filter_more;
 get_week04_recover;
 
 get_week05_inheritance;
+get_week05_speller;
 
 log_finished;
