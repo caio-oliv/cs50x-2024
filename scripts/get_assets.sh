@@ -108,6 +108,14 @@ function get_week05_speller {
 	download_zip_assets $file_uri $zip_file;
 }
 
+function get_week06_dna {
+	local file_uri='https://cdn.cs50.net/2023/fall/psets/6/dna.zip';
+	local zip_file='dna.zip';
+
+	log_load_assets '06' '"DNA"';
+	download_zip_assets $file_uri $zip_file;
+}
+
 
 mkdir --parents $ASSETS_DIR;
 
@@ -123,5 +131,7 @@ get_week04_recover;
 
 get_week05_inheritance;
 get_week05_speller;
+
+get_week06_dna;
 
 log_finished;
