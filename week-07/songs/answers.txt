@@ -1,0 +1,2 @@
+1. use this query to calculate the aura: SELECT avg((danceability + energy + valence) / 3.0) AS aura FROM songs;
+2. use a weighted average, taking the number of times the song was listened into account.
