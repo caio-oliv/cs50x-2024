@@ -116,11 +116,19 @@ function get_week06_dna {
 	download_zip_assets $file_uri $zip_file;
 }
 
-function get_week07_song {
+function get_week07_songs {
 	local file_uri='https://cdn.cs50.net/2023/fall/psets/7/songs.zip';
 	local zip_file='songs.zip';
 
-	log_load_assets '07' '"Song"';
+	log_load_assets '07' '"Songs"';
+	download_zip_assets $file_uri $zip_file;
+}
+
+function get_week07_movies {
+	local file_uri='https://cdn.cs50.net/2023/fall/psets/7/movies.zip';
+	local zip_file='movies.zip';
+
+	log_load_assets '07' '"Movies"';
 	download_zip_assets $file_uri $zip_file;
 }
 
@@ -142,6 +150,7 @@ get_week05_speller;
 
 get_week06_dna;
 
-get_week07_song;
+get_week07_songs;
+get_week07_movies;
 
 log_finished;
