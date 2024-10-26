@@ -132,6 +132,14 @@ function get_week07_movies {
 	download_zip_assets $file_uri $zip_file;
 }
 
+function get_week07_fiftyville {
+	local file_uri='https://cdn.cs50.net/2023/fall/psets/7/fiftyville.zip';
+	local zip_file='fiftyville.zip';
+
+	log_load_assets '07' '"Fiftyville"';
+	download_zip_assets $file_uri $zip_file;
+}
+
 
 mkdir --parents $ASSETS_DIR;
 
@@ -152,5 +160,6 @@ get_week06_dna;
 
 get_week07_songs;
 get_week07_movies;
+get_week07_fiftyville;
 
 log_finished;
