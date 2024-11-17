@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Trivia!</title>
+    <script>
+        const QUEST1_ANSWER1_BUTTON_ID = 'quest1-answer1';
+        const QUEST1_ANSWER2_BUTTON_ID = 'quest1-answer2';
+        const QUEST1_ANSWER3_BUTTON_ID = 'quest1-answer3';
+        const QUEST1_ANSWER_FEEDBACK_ID = 'quest1-answer-feedback';
+
+        const QUEST2_ANSWER_INPUT_ID = 'quest2-answer-input';
+        const QUEST2_CONFIRM_ANSWER_ID = 'quest2-confirm-answer';
+        const QUEST2_ANSWER_FEEDBACK_ID = 'quest2-answer-feedback';
+
+        const BUTTON_ANSWER_ATTR_NAME = 'data-answer';
+
+        function aswer_attr_value(is_correct) {
+            return is_correct ? 'correct' : 'incorrect';
+        }
+
+        function get_feedback_label(is_correct) {
+            return is_correct ? 'Correct!' : 'Incorrect';
+        }
+
+        function quest1_incorrect_answer(event) {
+            const correct = false;
+            event.target?.setAttribute(BUTTON_ANSWER_ATTR_NAME, aswer_attr_value(correct));
+            const feedback = document.getElementById(QUEST1_ANSWER_FEEDBACK_ID);
+            display_quest_feedback(feedback, correct);
+        }
+
+        function quest1_correct_answer(event) {
+            const correct = true;
+            event.target?.setAttribute(BUTTON_ANSWER_ATTR_NAME, aswer_attr_value(correct));
+            const feedback = document.getElementById(QUEST1_ANSWER_FEEDBACK_ID);
+            display_quest_feedback(feedback, correct);
+        }
+
+        function quest2_answer(event) {
+            const text = quest2_get_answer();
+            const is_correct = check_quest2_answer(text);
+
+            event.target?.setAttribute(BUTTON_ANSWER_ATTR_NAME, aswer_attr_value(is_correct));
+
+            const feedback = document.getElementById(QUEST2_ANSWER_FEEDBACK_ID);
+            display_quest_feedback(feedback, is_correct);
+        }
+
+        function display_quest_feedback(feedbackEl, correct) {
+            feedbackEl.textContent = get_feedback_label(correct);
+            feedbackEl.setAttribute('data-show-feedback', '');
+        }
+
+        function quest2_get_answer() {
+            const answerEl = document.getElementById(QUEST2_ANSWER_INPUT_ID);
+            return answerEl.value ?? '';
+        }
+
+        function check_quest2_answer(text) {
+            const keywords = ['trait', 'type', 'good', 'borrow', 'thread', 'system level', 'iterator'];
+            for (const key of keywords) {
+                if (text.includes(key)) return true;
+            }
+            return false;
+        }
+
+        function setup() {
+            const q1answer1 = document.getElementById(QUEST1_ANSWER1_BUTTON_ID);
+            const q1answer2 = document.getElementById(QUEST1_ANSWER2_BUTTON_ID);
+            const q1answer3 = document.getElementById(QUEST1_ANSWER3_BUTTON_ID);
+            const q2answer = document.getElementById(QUEST2_CONFIRM_ANSWER_ID);
+
+            q1answer1.addEventListener('click', quest1_incorrect_answer);
+            q1answer2.addEventListener('click', quest1_incorrect_answer);
+            q1answer3.addEventListener('click', quest1_correct_answer);
+            q2answer.addEventListener('click', quest2_answer);
+        }
+
+        window.addEventListener('load', setup);
+    </script>
+    <style>
+        .answer_feedback {
+            display: none;
+        }
+
+        .answer_feedback[data-show-feedback] {
+            display: initial;
+        }
+
+        .answer_button[data-answer="correct"] {
+            background-color: green;
+        }
+
+        .answer_button[data-answer="incorrect"] {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Part 1: Multiple Choice </h2>
+
+            <hr>
+
+            <h3>What is the best low level language?</h3>
+
+            <button id="quest1-answer1" type="button" class="answer_button" name="best_language">C</button>
+            <button id="quest1-answer2" type="button" class="answer_button" name="best_language">Zig</button>
+            <button id="quest1-answer3" type="button" class="answer_button" name="best_language">Rust</button>
+
+            <span id="quest1-answer-feedback" class="answer_feedback"></span>
+        </div>
+
+        <div class="section">
+            <h2>Part 2: Free Response</h2>
+
+            <hr>
+
+            <h3>Why Rust is the best language?</h3>
+            <input id="quest2-answer-input" type="text" autocomplete="off" inputmode="text" name="justification">
+            <button id="quest2-confirm-answer" class="answer_button">Confirm</button>
+
+            <span id="quest2-answer-feedback" class="answer_feedback"></span>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+		crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="styles.css">
+	<title>My Webpage</title>
+</head>
+
+<body>
+	<header class="screen_header">
+		<nav class="navigation_bar">
+			<ul class="navigation_list">
+				<li class="navigation_item"><a href=".">Caio Oliveira</a></li>
+				<li class="navigation_item"><a href="education.html">Education</a></li>
+				<li class="navigation_item"><a href="portfolio.html">Portfolio</a></li>
+				<li class="navigation_item"><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main class="screen_content">
+		<h1 class="screen_title">Caio Oliveira - Contact</h1>
+
+		<section id="section_contact">
+			<ul>
+				<li>
+					Github: <a href="https://github.com/caio-oliv" target="_blank"
+						rel="noopener noreferrer">github.com/caio-oliv</a>
+				</li>
+				<li>
+					LinkedIn: <a href="https://www.linkedin.com/in/ocaiooliveira" target="_blank"
+						rel="noopener noreferrer">linkedin.com/in/ocaiooliveira</a>
+				</li>
+				<li>
+					E-mail: <a href="mailto:caio.vsoliveira23@gmail.com" target="_blank"
+						rel="noopener noreferrer">caio.vsoliveira23@gmail.com</a>
+				</li>
+			</ul>
+		</section>
+
+		<section id="section_send_message">
+			<h3>Send a message</h3>
+			<form action="" method="post">
+				<div class="textfield">
+					<label for="name">Name:</label>
+					<input type="text" id="name" name="name" required autocomplete="name">
+				</div>
+				<div class="textfield">
+					<label for="email">E-mail:</label>
+					<input type="email" id="email" name="email" required autocomplete="email">
+				</div>
+				<div class="textfield">
+					<label for="message">Message:</label>
+					<textarea name="message" id="message" rows="3" cols="25" required>
+					</textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Send message</button>
+			</form>
+		</section>
+	</main>
+
+	<footer class="screen_footer">
+		<p>Caio Oliveira</p>
+		<p class="footer_text">Software developer</p>
+	</footer>
+</body>
+
+</html>

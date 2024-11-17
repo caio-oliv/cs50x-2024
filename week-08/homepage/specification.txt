@@ -1,0 +1,1 @@
+tags: p, main, header, section, footer, h1, h2, h3, div, nav, ul, li, a, form, label, input, textarea, button
