@@ -155,6 +155,22 @@ function get_week08_homepage {
 	download_zip_assets $file_uri $zip_file;
 }
 
+function get_week09_birthdays {
+	local file_uri='https://cdn.cs50.net/2023/fall/psets/9/birthdays.zip';
+	local zip_file='birthdays.zip';
+
+	log_load_assets '09' '"Birthdays"';
+	download_zip_assets $file_uri $zip_file;
+}
+
+function get_week09_finance {
+	local file_uri='https://cdn.cs50.net/2024/x/psets/9/finance.zip';
+	local zip_file='finance.zip';
+
+	log_load_assets '09' '"Finance"';
+	download_zip_assets $file_uri $zip_file;
+}
+
 function get_all {
 	get_week03_sort;
 	get_week03_plurality;
@@ -177,6 +193,9 @@ function get_all {
 
 	get_week08_trivia;
 	get_week08_homepage;
+
+	get_week09_birthdays;
+	get_week09_finance;
 }
 
 function invalid_problem_set {
@@ -278,6 +297,19 @@ case $1 in
 				;;
 			*)
 				invalid_problem_set "${2:-}" $1 "trivia";
+				;;
+		esac
+		;;
+	'w9')
+		case $2 in
+			'birthdays')
+				get_week09_birthdays;
+				;;
+			'finance')
+				get_week09_finance;
+				;;
+			*)
+				invalid_problem_set "${2:-}" $1 "birthdays";
 				;;
 		esac
 		;;
