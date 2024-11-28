@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Quote
+{% endblock %}
+
+{% block main %}
+<div class="container d-flex justify-content-start mb-4">
+	<h2>Hello, {{ username }}</h2>
+</div>
+
+<div class="container flex-column justify-content-start text-start mb-4">
+	<h2 class="m-0 mb-2 h4 text-start">Balance</h2>
+	<p class="m-0">Available: <strong>{{ balance.available }}</strong></p>
+	<p class="m-0">Total: <strong>{{ balance.all_assets }}</strong></p>
+</div>
+
+<div class="container flex-column justify-content-start text-start mb-4">
+	<h2 class="m-0 mb-2 h4 text-start">My Stocks</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Ticker</th>
+				<th>Price</th>
+				<th>Shares</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for stock in stocks %}
+			<tr>
+				<td>{{ stock.symbol }}</td>
+				<td>{{ stock.price }}</td>
+				<td>{{ stock.shares }}</td>
+				<td>{{ stock.total }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}
